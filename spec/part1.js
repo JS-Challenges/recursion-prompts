@@ -29,6 +29,7 @@
         factorial = sinon.spy(factorial);
         factorial(4);
         expect(factorial.callCount).to.equal(5);
+        factorial = originalFactorial;
       });
     });
 
