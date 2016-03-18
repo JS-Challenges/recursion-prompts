@@ -23,6 +23,14 @@
       it('should return null for negative integers', function() {
         expect(factorial(-5)).to.equal(null);
       });
+
+      it('should use recursion', function () {
+        var originalFactorial = factorial;
+        factorial = sinon.spy(factorial);
+        factorial(4);
+        expect(factorial.callCount).to.equal(5);
+        factorial = originalFactorial;
+      });
     });
 
 
