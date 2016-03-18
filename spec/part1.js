@@ -78,6 +78,14 @@
         var result = sum(input);
         expect(input).to.eql([1,2,3,4,5]);
       });
+
+      it('should use recursion', function () {
+        var originalSum = sum;
+        sum = sinon.spy(sum);
+        sum([1, 2, 3, 4, 5]);
+        expect(sum.callCount).to.be.above(1);
+        sum = originalSum;
+      });
     });
 
 
