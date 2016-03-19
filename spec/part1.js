@@ -28,7 +28,11 @@
         var originalFactorial = factorial;
         factorial = sinon.spy(factorial);
         factorial(4);
-        expect(factorial.callCount).to.equal(5);
+        var firstCallCount = factorial.callCount;
+        expect(firstCallCount).to.equal(4);
+        factorial(6);
+        var secondCallCount = factorial.callCount - firstCallCount;
+        expect(secondCallCount).to.equal(6);
       });
 
     });
