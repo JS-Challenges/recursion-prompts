@@ -271,6 +271,10 @@
         expect(exponent(7,2)).to.equal(49);
       });
 
+      it('returns undefined when both the base and exponent are 0', function() {
+        expect(exponent(0,0)).to.equal(undefined);
+      });
+
       it('returns 1 when exponent is 0', function() {
         expect(exponent(8,0)).to.equal(1);
         expect(exponent(244,0)).to.equal(1);
