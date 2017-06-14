@@ -433,10 +433,11 @@
 
       // remove the 'x' to enable test
       xit('should accept negative integer for base', function() {
-        expect(exponent(-3,4)).to.equal(-81);
+        expect(exponent(-3,4)).to.equal(81);
         expect(exponent(-12,5)).to.equal(-248832);
-        expect(exponent(-7,2)).to.equal(-49);
-        expect(exponent(-7,4)).to.equal(-2401);
+        expect(exponent(-7,2)).to.equal(49);
+        expect(exponent(-7,4)).to.equal(2401);
+        expect(exponent(-3,5)).to.equal(-243);
       });
 
     });
