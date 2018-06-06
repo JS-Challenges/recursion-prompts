@@ -276,7 +276,7 @@
         expect(sumBelow(12)).to.equal(66);
       });
 
-      it('should return the sum of an array of negative integers', function() {
+      it('should return the sum of negative integers above given negative integer', function() {
         expect(sumBelow(-1)).to.equal(0);
         expect(sumBelow(-2)).to.equal(-1);
         expect(sumBelow(-6)).to.equal(-15);
