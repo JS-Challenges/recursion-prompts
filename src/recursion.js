@@ -70,8 +70,8 @@ var modulo = function(x, y) {
 var multiply = function(x, y) {
 };
 
-// 13. Write a function that divides two numbers without using the / operator or
-// Math methods.
+// 13. Write a funct  ion that divides two numbers without using the / operator or
+// Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
 };
 
