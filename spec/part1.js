@@ -887,7 +887,7 @@
       });
 
       it('should use recursion by calling self', function() {
-        compareStr('house', 'houses');
+        compareStr('houses', 'houses');
         expect(compareStr.callCount).to.be.above(1);
       });
 
