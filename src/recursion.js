@@ -200,7 +200,7 @@ var letterTally = function(str, obj) {
 var compress = function(list) {
 };
 
-// 33. Augument every element in a list with a new value where each element is an array
+// 33. Augment every element in a list with a new value where each element is an array
 // itself.
 // augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
 var augmentElements = function(array, aug) {
