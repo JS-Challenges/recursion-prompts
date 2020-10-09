@@ -7,32 +7,102 @@
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
 var factorial = function(n) {
+	if (n < 0) {
+		return null
+	}
+	if (n === 0) {
+		return 1
+	}
+	return (n * ( factorial (n - 1 )))
 };
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
+	if( array.length===0){
+		return 0 
+	}
+	if ( array.length===1){
+		return array[0]
+	}
+	// return array.pop()+ sum(array)
+	return ( array[0] + (sum(array.slice(1))))
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+	var  reducer = (a,b) => a + b;   //(source mdn ) https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/reduce
+	if( array.length===0){
+		return 0 
+	}
+	if ( array.length===1){
+		return array[0]
+	}
+	
+    array1 =array.flat(Infinity)      //(source mdn) https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array/flat
+    return array1.reduce(reducer)
+	// return ( array.flat()[0] + (sum(array.falt().slice(1))))
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+
+	if ( n===0){
+		return true 
+	}
+	 if (((n/2) - Math.floor(n/2)) === 0) {
+	 	return true;
+	 }else{
+		return false
+	}
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+	if (n<0){
+		return (n+1 + sumBelow(n+1))
+	}
+	if( n===0){
+		return 0
+	}
+	return (n-1+ sumBelow(n-1))
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+var acc=[]
 var range = function(x, y) {
+
+debugger;
+	
+	if( x===y || y-x===1){
+		return acc
+	}else{
+	acc.push(x+1)
+
+	
+    }
+return range(x+1,y)
 };
+
+
+					// var range = function(x, y) {
+					// 	var acc=[]
+					// 	if (x===y){
+					// return acc 
+					// }
+					// for(i=x+1;i<y;i++){
+					// acc.push(i)
+					// }
+					// return acc
+					 
+					// };
+
+
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
@@ -40,6 +110,15 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+
+	if(exp===0){
+		return 1
+	}
+	if (exp<0) {
+		return 1/(base*(exponent(base,exp+1)))   // 1/exponent(4,3)  === exponent(4,-3)
+	}
+	return base*(exponent(base,exp-1))
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -47,6 +126,17 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+	if(n===0){
+		return false 
+	}
+	if(n===0){
+		return true
+	}
+	if((Math.floor(Math.sqrt(n)))*(Math.floor(Math.sqrt(n)))===n){
+		return true
+	}else{
+return false
+}
 };
 
 // 9. Write a function that reverses a string.
