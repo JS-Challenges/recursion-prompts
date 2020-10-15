@@ -6,33 +6,111 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
-var factorial = function(n) {
-};
+function factorial(num) {
+  if (num < 0) 
+        return -1;
+  else if (num == 0) 
+      return 1;
+  else {
+      return (num * factorial(num - 1));
+  }
+}
+factorial(null);
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
-var sum = function(array) {
-};
+
+function sum(array) {
+  if (array.length === 0) {
+    return 0;
+  } else {
+    return array[0] + sum(array.slice(1));
+  }
+}
+
+sum([1, 2, 3, 4, 5]);
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function(array) {
-};
+function arraySum(array) {
+  var sum = 0;
+  for(var i = 0; i < array.length; i++) {
+    var val = array[i];
+    if(Array.isArray(val)){ 
+      // if it' an array sum will equal to a sum of values IN an array
+    sum += arraySum(val)
+    } else {
+      //if it's not, add the number to our sum variable.
+       sum += val;
+    }
+  }
+  return sum;
+}
+
+arraySum([1,[2,3],[[4]],5,6,[3,4]]);
+
 
 // 4. Check if a number is even.
-var isEven = function(n) {
-};
+function isEven(number)
+{
+  if (number < 0) 
+  {
+    number = Math.abs(number);
+  }
+  if (number===0) 
+  {
+    return true;
+  }
+  if (number===1) 
+  {
+    return false;
+  }
+  else 
+  {
+    number = number - 2;
+    return isEven(number);
+  }
+}
+console.log(isEven(234)); 
+console.log(isEven(-45)); 
+console.log(isEven(-45)); 
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
-var sumBelow = function(n) {
+var sumBelow = function (n) {
+    console.log(n);
+    // base case
+    if (n === 0) {
+        console.log('we hit the base case');
+        return 0;
+    }
+    // initialize var to hold sum
+    if (!sum_sumBelow) var sum_sumBelow = 0;
+    // add numbers
+    sum_sumBelow = n - 1 + sumBelow(n - 1);
+    return sum_sumBelow;
 };
+
+console.log('answer is', sumBelow(4));
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
-var range = function(x, y) {
+var range = function(start_num, end_num) 
+{
+  if (end_num - start_num === 2) 
+  {
+    return [start_num + 1];
+  } 
+  else 
+  {
+    var list = range(start_num, end_num - 1);
+    list.push(end_num - 1);
+    return list;
+  }
 };
+
+console.log(range(2,9));
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
