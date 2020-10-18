@@ -124,43 +124,106 @@ var powerOfTwo = function (n) {
 // 9. Write a function that reverses a string.
 var reverse = function (string) {
   if (string === "") {
-    return (
-      string.charAt(string.length - 1) +
-      reverse(string.charAt(string.length - 1))
-    );
+    return "";
+  } else {
+    return reverse(string.substr(1)) + string.charAt(0);
   }
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function (string) {};
+var palindrome = function (string) {
+  const cleanString = string.replace(/\W/g, "").toLowerCase();
+
+  if (cleanString.length === 1) {
+    return true;
+  } else if (cleanString.length === 2) {
+    return cleanString[0] === cleanString[1];
+  } else if (cleanString[0] === cleanString.slice(-1)) {
+    return palindrome(cleanString.slice(1, -1));
+  }
+  return false;
+};
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
 // modulo(5,2) // 1
 // modulo(17,5) // 2
 // modulo(22,6) // 4
-var modulo = function (x, y) {};
+var modulo = function (x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+
+  if (x < 0) {
+    return -modulo(-x, y);
+  } else if (y < 0) {
+    return modulo(x, -y);
+  } else if (x < y) {
+    return x;
+  }
+  return modulo(x - y, y);
+};
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
-var multiply = function (x, y) {};
+var multiply = function (x, y) {
+  if (x === 0 || y === 0) {
+    return 0;
+  } else if (y < 0) {
+    return -x + multiply(x, y + 1);
+  } else {
+    return x + multiply(x, y - 1);
+  }
+};
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
-var divide = function (x, y) {};
+var divide = function (x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+  if (x < y) {
+    return 0;
+  } else {
+    return x - y - divide(x - y, y);
+  }
+};
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
 // integers is the greatest integer that divides both x and y with no remainder.
 // gcd(4,36); // 4
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
-var gcd = function (x, y) {};
+var gcd = function (x, y) {
+  if (x < 0 || y < 0) {
+    return null;
+  } else if (!y) {
+    // this base case stops the recursion once y equals zero
+    return x;
+  } else {
+    return gcd(y, x % y); // recursively call the gcd function with params y & the remainder of x minus y
+  }
+};
 
 // 15. Write a function that compares each character of two strings and returns true if
 // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
-var compareStr = function (str1, str2) {};
+var compareStr = function (str1, str2) {
+  if (
+    (str1.length !== 0 && str2.length === 0) ||
+    (str1.length === 0 && str2.length !== 0)
+  ) {
+    if (str1[0] !== str2[0]) {
+      return false;
+    }
+  } else if (str1.length === 0 && str2.length === 0) {
+    if (str1[0] === str2[0]) {
+      return true;
+    }
+  }
+  return compareStr(str1.slice(1), str2.slice(1));
+};
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
