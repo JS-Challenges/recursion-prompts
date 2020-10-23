@@ -100,10 +100,10 @@ var exponent = function (base, exp) {
   }
   if (exp > 0) {
     return base * exponent(base, exp - 1);
-    // return exponent(base, exp / 2) ** 2;
+    // return exponent(base, exp / 2) * 2;
   } else if (exp < 0) {
     return exponent(base, exp + 1) / base;
-    // return exponent(base, exp / 2) ** 2;
+    // return exponent(base, exp / 2) * 2;
   }
 };
 
