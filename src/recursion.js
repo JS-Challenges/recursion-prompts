@@ -19,7 +19,7 @@ let factorial = function(n) {
 // sum([1,2,3,4,5,6]); // 21
 let sum = function(array) {
     let total = 0;
-    for (var n = 0; n < array.length; n++) {
+    for (let n = 0; n < array.length; n++) {
       // terminating case
       if (n === array.length - 1) {
         //   console.log('last', total, array[n]);
@@ -40,7 +40,7 @@ let sum = function(array) {
 let arraySum = function(array) {
     if (array.length === 0) return 0;
     let  sum = 0;
-    for (var i=0; i<array.length; i++){
+    for (let i=0; i<array.length; i++){
       if (array[i] instanceof Array) {     
         sum += arraySum(array[i]);
       } else {
@@ -410,7 +410,7 @@ let flatten = function(array) {
 
   let list = [];
   if (array.length === 0) return [];
-  for (var i=0; i<array.length; i++) {
+  for (let i=0; i<array.length; i++) {
     if (array[i] instanceof Array) {
       list.push(...flatten(array[i]));
     } else {
@@ -442,7 +442,7 @@ let letterTally = function(str, obj={}) {
 // compress([1,2,2,3,4,4,2,5,5,5,4,4]) // [1,2,3,4,2,5,4]
 let compress = function(list) {
   if (list.length === 0) return [];
-  var res = compress(list.slice(1));
+  let res = compress(list.slice(1));
   if (list[0] !== res[0]) {
     res.unshift(list[0]);
   }
@@ -452,7 +452,7 @@ let compress = function(list) {
 // 33. Augment every element in a list with a new value where each element is an array
 // itself.
 // augmentElements([[],[3],[7]], 5); // [[5],[3,5],[7,5]]
-var augmentElements = function(array, aug) {
+let augmentElements = function(array, aug) {
   if (array.length === 0) return [];
   let list = augmentElements(array.slice(1), aug);
   array[0].push(aug);
