@@ -121,10 +121,15 @@ var powerOfTwo = function(n) {
 };
 
 // 9. Write a function that reverses a string.
-var reverse = function(string) {};
+var reverse = function(string) {
+  // edge: string.length === 0
+  // base: string.length === 1
+};
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function(string) {};
+var palindrome = function(string) {
+
+};
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
