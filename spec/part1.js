@@ -214,7 +214,11 @@
       it("should not use modulo", function() {
         var stringified = originalIsEven.toString();
         expect(stringified).to.not.contain('%');
-        expect(stringified).to.not.contain('modulo');
+        var originalModulo = modulo;
+        modulo = sinon.spy(modulo);
+        isEven(8);
+        expect(modulo.called).to.be.false;
+        modulo = originalModulo;
       });
 
       it('should return true for even numbers', function() {
@@ -686,7 +690,11 @@
         expect(stringified).to.not.contain('/');
         expect(stringified).to.not.contain('%');
         expect(stringified).to.not.contain('Math');
-        expect(stringified).to.not.contain('modulo');
+        var originalModulo = modulo;
+        modulo = sinon.spy(modulo);
+        multiply(8,4);
+        expect(modulo.called).to.be.false;
+        modulo = originalModulo;
       });
 
       it('should return the product of two positive integers', function() {
@@ -769,7 +777,11 @@
         expect(stringified).to.not.contain('/');
         expect(stringified).to.not.contain('%');
         expect(stringified).to.not.contain('Math');
-        expect(stringified).to.not.contain('modulo');
+        var originalModulo = modulo;
+        modulo = sinon.spy(modulo);
+        divide(8,4);
+        expect(modulo.called).to.be.false;
+        modulo = originalModulo;
       });
 
       it('should return the quotient of two integers', function() {
