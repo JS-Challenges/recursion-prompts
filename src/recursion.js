@@ -52,7 +52,6 @@ var isEven = function (n) {
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
-// n === - 5 ... [-4 + [-3 + [-2 + [-1 + 0]]] === -10
 var sumBelow = function (n) {
   var abs = Math.abs(n);
   if (n === 0) {
@@ -61,26 +60,65 @@ var sumBelow = function (n) {
   if (n < abs) {
     return -1 * sumBelow(abs);
   } else {
-    return (n-1) + sumBelow(n - 1);
+    return n - 1 + sumBelow(n - 1);
   }
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
-var range = function (x, y) {};
+
+var range = function (x, y) {
+  if (x === y) {
+    return [];
+  }
+  if (Array.isArray(x)) {
+    return x;
+  }
+  if (x < y) {
+    var result = [];
+    for (var i = x + 1; i < y; i++) {
+      result.push(i);
+    }
+    x = result;
+    return range(x, y);
+  } else if (x > y) {
+    var result = [];
+    for (var i = y + 1; i < x; i++) {
+      result.unshift(i);
+    }
+    x = result;
+    return range(x, y);
+  }
+};
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
 // 8^2 = 8 x 8 = 64. Here, 8 is the base and 2 is the exponent.
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
-var exponent = function (base, exp) {};
+var exponent = function (base, exp) {
+  if (exp === 0) {
+    return 1;
+  } else if (exp === 1) {
+    return base;
+  } else if (exp > 0) {
+    return base * exponent(base, exp - 1);
+  } else if (exp < 0) {
+    return (1 / base) * exponent(base, exp + 1).toFixed(4);
+  }
+};
 
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function (n) {};
+var powerOfTwo = function (n) {
+  if (n === 0) {
+    return true;
+  } else if (n < 0) {
+    return false;
+  }
+};
 
 // 9. Write a function that reverses a string.
 var reverse = function (string) {};
