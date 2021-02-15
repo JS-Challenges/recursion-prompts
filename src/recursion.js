@@ -44,16 +44,26 @@ var isEven = function (n) {
   var newNum = n - 2;
   if (newNum === 0) {
     return true;
-  } else if (newNum < 0  && (n) > 0 ) {
+  } else if (newNum < 0 && n > 0) {
     return false;
-  } else 
-  return isEven(Math.abs(n -2));
+  } else return isEven(Math.abs(n - 2));
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
-var sumBelow = function (n) {};
+// n === - 5 ... [-4 + [-3 + [-2 + [-1 + 0]]] === -10
+var sumBelow = function (n) {
+  var abs = Math.abs(n);
+  if (n === 0) {
+    return 0;
+  }
+  if (n < abs) {
+    return -1 * sumBelow(abs);
+  } else {
+    return (n-1) + sumBelow(n - 1);
+  }
+};
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
