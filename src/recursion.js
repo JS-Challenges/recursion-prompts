@@ -117,11 +117,23 @@ var powerOfTwo = function (n) {
     return true;
   } else if (n < 2) {
     return false;
-  } return powerOfTwo(n / 2);
+  }
+  return powerOfTwo(n / 2);
 };
 
 // 9. Write a function that reverses a string.
-var reverse = function (string) {};
+//traf --- fart
+// sting[string.length - 1]
+var reverse = function (string) {
+  if (string.length === 0) {
+    return '';
+  } else {
+    return (
+      string[string.length - 1] +
+      reverse(string.substring(0, string.length - 1))
+    );
+  }
+};
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function (string) {};
