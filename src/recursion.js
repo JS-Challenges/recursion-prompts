@@ -122,8 +122,6 @@ var powerOfTwo = function (n) {
 };
 
 // 9. Write a function that reverses a string.
-//traf --- fart
-// sting[string.length - 1]
 var reverse = function (string) {
   if (string.length === 0) {
     return '';
@@ -136,7 +134,20 @@ var reverse = function (string) {
 };
 
 // 10. Write a function that determines if a string is a palindrome.
-var palindrome = function (string) {};
+// rottor
+var palindrome = function (string) {
+  string = string.split(' ').join('').toLowerCase();
+
+  if (string.length === 2 && string[0] === string[1]) {
+    return true;
+  } else if (string.length === 1) {
+    return true;
+  } else if (string[0] !== string[string.length - 1]) {
+    return false;
+  } else {
+    return palindrome(string.substring(1, string.length - 1));
+  }
+};
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -147,6 +158,8 @@ var modulo = function (x, y) {};
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
+// (3, 4) --  12 // 3 + 3 + 3 + 3
+-3, 4;
 var multiply = function (x, y) {};
 
 // 13. Write a function that divides two numbers without using the / operator or
@@ -195,10 +208,25 @@ var countOccurrence = function (array, value) {};
 var rMap = function (array, callback) {};
 
 // 22. Write a function that counts the number of times a key occurs in an object.
-// var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+// var obj = { e: { x: 'y' }, t: { r: { e: 'r' }, p: { y: 'r' } }, y: 'e' };
 // countKeysInObj(obj, 'r') // 1
 // countKeysInObj(obj, 'e') // 2
-var countKeysInObj = function (obj, key) {};
+//
+// [["e",{"x":"y"}],["t",{"r":{"e":"r"},"p":{"y":"r"}}],["y","e"]
+var countKeysInObj = function(obj, key) {
+  var result = 0;
+
+  for (let prop in obj) {
+    if (prop === key) {
+      result++;
+    }
+    var innerProp = obj[prop];
+    if (typeof innerProp === 'object') {
+      result += countKeysInObj(innerProp, key);
+    }
+  }
+  return result;
+};
 
 // 23. Write a function that counts the number of times a value occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
