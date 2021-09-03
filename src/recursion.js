@@ -14,6 +14,7 @@ var factorial = function(n) {
   } else {
     return n * factorial (n - 1);
   }
+
 };
 
 // 2. Compute the sum of an array of integers.
@@ -26,10 +27,13 @@ var sum = function(array) {
   } else {
     return array[0] + sum(array.slice(1));
   }
+
 };
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
+// from https://stackoverflow.com/questions/29501040/javascript-recursive-loop-to-sum-all-integers-from-nested-array
+/* +n attempts to convert strings to integers, defaulting to zero if +n yields NaN.*/
 var arraySum = function(array) {
   if (array.length === 0) {
     return 0;
@@ -41,6 +45,7 @@ var arraySum = function(array) {
   } else {
     return arraySum(first) + arraySum(rest);
   }
+
 };
 
 // 4. Check if a number is even.
@@ -53,6 +58,7 @@ var isEven = function(n) {
   } else {
     return isEven(n - 2);
   }
+
 
 };
 
@@ -75,10 +81,12 @@ var sumBelow = function(n) {
     sum = -sum;
   }
   return sum;
+
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+// https://www.w3resource.com/javascript-exercises/javascript-recursion-function-exercise-3.php
 var range = function(x, y) {
   if (x <= y) {
     if ((y - x) < 2) {
@@ -91,6 +99,7 @@ var range = function(x, y) {
       return [];
     } else if ((x - y) >= 2) {
       return [x - 1].concat(range(x - 1, y));
+
     }
   }
 
@@ -116,6 +125,7 @@ var exponent = function(base, exp) {
   } else if (exp < 0) { //accept negative integer for bases
     return 1 / exponent(base, -exp); //reciprocal of exponent function but with positive exp
   }
+
 };
 
 // 8. Determine if a number is a power of two.
@@ -134,6 +144,7 @@ var powerOfTwo = function(n) {
   } else if (n < 0) {
     return powerOfTwo(-n);
   }
+
 };
 
 // 9. Write a function that reverses a string.
@@ -145,6 +156,7 @@ var reverse = function(string) {
     reversed += string[string.length -1] + reverse(string.slice(0, string.length - 1));
   }
   return reversed;
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
@@ -157,6 +169,7 @@ var palindrome = function(string) {
     palindrome(string.slice(1, string.length - 1));
   }
 
+
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -165,16 +178,79 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (y === 0) { 
+    return NaN; 
+  }
+
+  if ( (x >= 0 && x < -y && y < 0) 
+    || (x >= 0 && x < y && y > 0) 
+    || (x <= 0 && -x < -y && y < 0) 
+    || (x <= 0 && -x < y && y > 0) ) { 
+    return x; 
+  }
+  if ( (x > 0 && y > 0) || (x < 0 && y < 0) ) {
+    return modulo(x - y, y);  
+  }
+  if ( (x > 0 && y < 0) || (x < 0 && y > 0) ) {
+    return modulo(x + y, y);  
+  }
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+  if (x === 0 || y === 0) {
+    return 0;
+  }
+  if (x > 0 && y > 0) {
+    if (y === 1) 
+      return x ;
+    return x + multiply(x, y-1);
+  }
+  if (x < 0 && y < 0) {
+    if (y === 1) 
+      return -x ;
+    return -x + multiply(-x, -y-1);
+  }
+  if (x > 0 && y < 0) {
+    if (y === 1) 
+      return -x ;
+    return -x + multiply(-x, -y-1);
+  }
+  if (x < 0 && y > 0) {
+    if (y === 1) 
+      return x ;
+    return x + multiply(x, y-1);
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function(x, y) {
+  if (y === 0) {
+    return Infinity;
+  }
+  if (x > 0 && y > 0) {
+    if (y === 1) 
+      return x ;
+    return x + multiply(x, y-1);
+  }
+  if (x < 0 && y < 0) {
+    if (y === 1) 
+      return -x ;
+    return -x + multiply(-x, -y-1);
+  }
+  if (x > 0 && y < 0) {
+    if (y === 1) 
+      return -x ;
+    return -x + multiply(-x, -y-1);
+  }
+  if (x < 0 && y > 0) {
+    if (y === 1) 
+      return x ;
+    return x + multiply(x, y-1);
+  }
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
